@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sevilinma.tools.aliyunhelper.controller.PermissionEditController">
+    <bottom>
+        <HBox spacing="20" BorderPane.alignment="CENTER">
+            <Button onAction="#onOkButtonClick" text="OK"/>
+            <Button onAction="#onCancelButtonClick" text="Cancel"/>
+        </HBox>
+    </bottom>
+    <center>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="143.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="457.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Label text="Direction:" GridPane.rowIndex="1"/>
+            <Label text="Port Range:" GridPane.rowIndex="2"/>
+            <Label text="Protocol:" GridPane.rowIndex="3"/>
+            <Label text="Policy:" GridPane.rowIndex="4"/>
+            <Label text="Description:" GridPane.rowIndex="6"/>
+            <ComboBox fx:id="directionComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="ingress"/>
+                        <String fx:value="egress"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <ComboBox fx:id="protocolComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="ALL"/>
+                        <String fx:value="TCP"/>
+                        <String fx:value="UDP"/>
+                        <String fx:value="ICMP"/>
+                        <String fx:value="GRE"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <ComboBox fx:id="policyComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Accept"/>
+                        <String fx:value="Drop"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1"
+                  GridPane.rowIndex="2">
+                <TextField fx:id="portStartText"/>
+                <Label text="      --      "/>
+                <TextField fx:id="portEndText"/>
+            </HBox>
+            <ComboBox fx:id="nicTypeComboBox" prefWidth="150.0" GridPane.columnIndex="1">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="intranet"/>
+                        <String fx:value="internet"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Label text="Nic Type:"/>
+            <Label text="Source Cidr Ip:" GridPane.rowIndex="5"/>
+            <TextField fx:id="ipText" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            <TextArea fx:id="descriptionText" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
+                      GridPane.rowIndex="6"/>
+        </GridPane>
+    </center>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+</BorderPane>
