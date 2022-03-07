@@ -21,7 +21,7 @@
         <Separator orientation="VERTICAL" />
         <Button onAction="#onAboutButtonClick" text="About" />
     </HBox>
-   <TableView fx:id="permissionTableView" prefHeight="473.0" prefWidth="760.0" VBox.vgrow="SOMETIMES">
+   <TableView fx:id="permissionTableView" prefHeight="473.0" prefWidth="760.0" VBox.vgrow="SOMETIMES" onMouseClicked="#onTableViewMouseClicked">
      <columns>
         <TableColumn fx:id="nicTypeCol" minWidth="75.0" maxWidth="150.0" text="NicType" />
         <TableColumn fx:id="directionCol" minWidth="75.0" maxWidth="150.0" text="Direction" />
