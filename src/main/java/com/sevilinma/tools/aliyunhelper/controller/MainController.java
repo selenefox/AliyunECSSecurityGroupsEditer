@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -51,6 +52,9 @@ public class MainController implements Initializable, StageController {
     private Stage configViewStage;
     private AliyunAPIConfigViewController aliyunAPIConfigViewController;
     private AliyunAPIConfig apiConfigKey;
+    // tableview double click function
+    private MyPermission lastRow;
+    private Date lastClickTime;
 
     public MainController(){
         File jsonFile = new File("config.json");
@@ -317,4 +321,22 @@ public class MainController implements Initializable, StageController {
         }
     }
 
+    @FXML
+    protected void onTableViewMouseClicked(){
+        MyPermission row = permissionTableView.getSelectionModel().getSelectedItem();
+        if (row == null)
+            return;
+        if(row != lastRow){
+            lastRow = row;
+            lastClickTime = new Date();
+        } else {
+            Date now = new Date();
+            long diff = now.getTime() - lastClickTime.getTime();
+            if (diff < 300){
+                onEditButtonClick();
+            } else {
+                lastClickTime = new Date();
+            }
+        }
+    }
 }
