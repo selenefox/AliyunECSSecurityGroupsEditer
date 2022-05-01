@@ -34,17 +34,17 @@ public class MainController implements Initializable, StageController {
     @FXML
     private TableView<MyPermission> permissionTableView;
     @FXML
-    private TableColumn directionCol;
+    private TableColumn<MyPermission, String> directionCol;
     @FXML
-    private TableColumn portRangeCol;
+    private TableColumn<MyPermission, String> portRangeCol;
     @FXML
-    private TableColumn ipProtocolCol;
+    private TableColumn<MyPermission, String> ipProtocolCol;
     @FXML
-    private TableColumn policyCol;
+    private TableColumn<MyPermission, String> policyCol;
     @FXML
-    private TableColumn descCol;
+    private TableColumn<MyPermission, String> descCol;
     @FXML
-    private TableColumn nicTypeCol;
+    private TableColumn<MyPermission, String> nicTypeCol;
 
     private Stage aboutViewStage;
     private Stage permissionEditViewStage;
@@ -83,12 +83,12 @@ public class MainController implements Initializable, StageController {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        nicTypeCol.setCellValueFactory(new PropertyValueFactory<MyPermission, String>("nicType"));
-        directionCol.setCellValueFactory(new PropertyValueFactory<MyPermission, String>("direction"));
-        portRangeCol.setCellValueFactory(new PropertyValueFactory<MyPermission, String>("portRange"));
-        ipProtocolCol.setCellValueFactory(new PropertyValueFactory<MyPermission, String>("ipProtocol"));
-        policyCol.setCellValueFactory(new PropertyValueFactory<MyPermission, String>("policy"));
-        descCol.setCellValueFactory(new PropertyValueFactory<MyPermission, String>("description"));
+        nicTypeCol.setCellValueFactory(new PropertyValueFactory<>("nicType"));
+        directionCol.setCellValueFactory(new PropertyValueFactory<>("direction"));
+        portRangeCol.setCellValueFactory(new PropertyValueFactory<>("portRange"));
+        ipProtocolCol.setCellValueFactory(new PropertyValueFactory<>("ipProtocol"));
+        policyCol.setCellValueFactory(new PropertyValueFactory<>("policy"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(AliyunECSApplication.class.getResource("AboutView.fxml"));
@@ -247,7 +247,7 @@ public class MainController implements Initializable, StageController {
             alert.setTitle("Confirmation");
             alert.setHeaderText("Are you sure you want to delete this rule?");
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if (result.isPresent() && result.get() == ButtonType.OK){
                 DescribeSecurityGroupAttributeResponse.Permission p = selectedItem.getPermission();
                 if(p.getDirection().equals("ingress")){
                     removeIngressRule(p);
