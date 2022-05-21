@@ -56,8 +56,14 @@ public class MainController implements Initializable, StageController {
     private MyPermission lastRow;
     private Date lastClickTime;
 
+    private final String ConfigFileName = "config.json";
+
     public MainController(){
-        File jsonFile = new File("config.json");
+        File jsonFile = new File(ConfigFileName);
+        if(!jsonFile.exists()){
+            File myJarFile = new File(MainController.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+            jsonFile = new File(myJarFile.getParentFile().getAbsoluteFile() + File.separator + ConfigFileName);
+        }
 
         try{
             ObjectMapper objectMapper = new ObjectMapper();
