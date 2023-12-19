@@ -8,5 +8,7 @@ module com.sevilinma.tools.aliyunhelper {
     requires commons.beanutils;
 
     opens com.sevilinma.tools.aliyunhelper.controller to javafx.fxml;
+    opens com.sevilinma.tools.aliyunhelper.model to com.fasterxml.jackson.databind, javafx.base;
+
     exports com.sevilinma.tools.aliyunhelper;
 }

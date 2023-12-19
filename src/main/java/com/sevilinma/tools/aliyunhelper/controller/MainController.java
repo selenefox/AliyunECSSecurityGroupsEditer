@@ -55,10 +55,13 @@ public class MainController implements Initializable, StageController {
     // tableview double click function
     private MyPermission lastRow;
     private Date lastClickTime;
-
+    public final String config_file_name = "aliyun-ecs-config.json";
     public MainController(){
-        File jsonFile = new File("config.json");
-
+        File jsonFile = new File(config_file_name);
+        // load the config file on the current director
+        if(!jsonFile.exists()){
+            jsonFile = new File(System.getProperty("user.dir")+ File.separator + config_file_name);
+        }
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             apiConfigKey = objectMapper.readValue(jsonFile, AliyunAPIConfig.class);
