@@ -21,9 +21,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MainController implements Initializable, StageController {
     private IAcsClient client;
@@ -55,6 +53,9 @@ public class MainController implements Initializable, StageController {
     // tableview double click function
     private MyPermission lastRow;
     private Date lastClickTime;
+
+    // the groupId map
+    private Map<String, DescribeSecurityGroupsResponse.SecurityGroup> securityGroupMap = new HashMap<>();
 
     public MainController(){
         File jsonFile = new File("config.json");
@@ -155,12 +156,15 @@ public class MainController implements Initializable, StageController {
         }
 
         try{
+            securityGroupMap.clear();
+
             DescribeSecurityGroupsRequest r = new DescribeSecurityGroupsRequest();
             DescribeSecurityGroupsResponse rp = client.getAcsResponse(r);
             securityGroupComboBox.getItems().clear();
             for(DescribeSecurityGroupsResponse.SecurityGroup group: rp.getSecurityGroups()){
                 //System.out.printf("GroupName:%s Id:%s %n",group.getSecurityGroupName(), group.getSecurityGroupId());
                 securityGroupComboBox.getItems().add(group.getSecurityGroupId());
+                securityGroupMap.put(group.getSecurityGroupId(), group);
             }
             if(securityGroupComboBox.getItems().size() > 0){
                 securityGroupComboBox.getSelectionModel().select(0);
@@ -174,6 +178,7 @@ public class MainController implements Initializable, StageController {
         if(securityGroupComboBox.getItems().size() > 0 && !securityGroupComboBox.getSelectionModel().isEmpty()){
             DescribeSecurityGroupAttributeRequest request = new DescribeSecurityGroupAttributeRequest();
             request.setSecurityGroupId(securityGroupComboBox.getValue());
+            this.mainStage.setTitle(securityGroupMap.get(securityGroupComboBox.getValue()).getSecurityGroupName());
             try{
                 DescribeSecurityGroupAttributeResponse response = client.getAcsResponse(request);
                 permissionTableView.getItems().clear();
