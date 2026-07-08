@@ -58,7 +58,7 @@ public class MainController implements Initializable, StageController {
     private Map<String, DescribeSecurityGroupsResponse.SecurityGroup> securityGroupMap = new HashMap<>();
 
     public MainController(){
-        File jsonFile = new File("config.json");
+        File jsonFile = new File("aliyun-ecs-config.json");
 
         try{
             ObjectMapper objectMapper = new ObjectMapper();

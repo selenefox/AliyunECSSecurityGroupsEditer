@@ -75,6 +75,34 @@
 
     <build>
         <plugins>
+            <!-- 打包 fat jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.7.1</version>
+                <configuration>
+                    <!-- 指定启动主类 -->
+                    <archive>
+                        <manifest>
+                            <mainClass>com.sevilinma.tools.aliyunhelper.Launcher</mainClass>
+                        </manifest>
+                    </archive>
+                    <!-- 使用官方预设的描述符，表示打包包含依赖 -->
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- 绑定到 package 生命周期阶段 -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
