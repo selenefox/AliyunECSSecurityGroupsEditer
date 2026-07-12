@@ -10,10 +10,11 @@
     <name>AliyunECSSecurityGroupsEditer</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceencoding>utf-8</project.build.sourceencoding>
         <junit.version>5.8.1</junit.version>
         <javafx.version>21.0.11</javafx.version>
-        <jackson.version>2.13.1</jackson.version>
+        <jackson.version>2.22.1</jackson.version>
+        <commons.version>1.11.0</commons.version>
         <aliyun.sdk.version>[4.4.9,5.0.0)</aliyun.sdk.version>
     </properties>
 
@@ -46,7 +47,7 @@
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.9.4</version>
+            <version>${commons.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
