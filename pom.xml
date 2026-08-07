@@ -15,7 +15,10 @@
         <javafx.version>21.0.11</javafx.version>
         <jackson.version>2.22.1</jackson.version>
         <commons.version>1.11.0</commons.version>
-        <aliyun.sdk.version>[4.4.9,5.0.0)</aliyun.sdk.version>
+
+        <aliyun.core.version>4.7.10</aliyun.core.version>
+        <aliyun.ecs.version>5.11.27</aliyun.ecs.version>
+        <aliyun.dns.version>3.0.7</aliyun.dns.version>
     </properties>
 
     <dependencies>
@@ -32,17 +35,17 @@
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
-            <version>${aliyun.sdk.version}</version>
+            <version>${aliyun.core.version}</version>
         </dependency>
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-ecs</artifactId>
-            <version>${aliyun.sdk.version}</version>
+            <version>${aliyun.ecs.version}</version>
         </dependency>
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-alidns</artifactId>
-            <version>2.6.32</version>
+            <version>${aliyun.dns.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
