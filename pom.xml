@@ -10,10 +10,14 @@
     <name>AliyunECSSecurityGroupsEditer</name>
 
     <properties>
-        <java.version>20</java.version>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.1</junit.version>
-        <javafx.version>20.0.2</javafx.version>
+        <javafx.version>21.0.11</javafx.version>
+        <aliyun.core.version>4.7.10</aliyun.core.version>
+        <aliyun.ecs.version>5.11.27</aliyun.ecs.version>
+        <aliyun.dns.version>3.0.7</aliyun.dns.version>
+        <commons.beanutils.version>1.11.0</commons.beanutils.version>
     </properties>
 
     <dependencies>
@@ -30,27 +34,37 @@
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
-            <version>[4.4.9,5.0.0)</version>
+            <version>${aliyun.core.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>javax.activation-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.activation</groupId>
+                    <artifactId>javax.activation</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-ecs</artifactId>
-            <version>[4.16.0,5.0.0)</version>
+            <version>${aliyun.ecs.version}</version>
         </dependency>
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-alidns</artifactId>
-            <version>2.6.32</version>
+            <version>${aliyun.dns.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.9.4</version>
+            <version>${commons.beanutils.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.13.1</version>
+            <version>2.22.1</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -77,7 +91,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
                     <release>${java.version}</release>
                     <source>${java.version}</source>
@@ -96,9 +110,9 @@
                             <mainClass>
                                 com.sevilinma.tools.aliyunhelper/com.sevilinma.tools.aliyunhelper.AliyunECSApplication
                             </mainClass>
-                            <launcher>app</launcher>
-                            <jlinkZipName>app</jlinkZipName>
-                            <jlinkImageName>app</jlinkImageName>
+                            <launcher>AliyunECSSecurityGroupsEditer</launcher>
+                            <jlinkZipName>AliyunECSSecurityGroupsEditer</jlinkZipName>
+                            <jlinkImageName>AliyunECSSecurityGroupsEditer</jlinkImageName>
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <noHeaderFiles>true</noHeaderFiles>

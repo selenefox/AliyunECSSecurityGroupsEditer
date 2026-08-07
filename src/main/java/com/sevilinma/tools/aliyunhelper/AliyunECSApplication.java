@@ -19,8 +19,4 @@ public class AliyunECSApplication extends Application {
         StageController stageController = fxmlLoader.getController();
         stageController.setStage(stage);
     }
-
-    public static void main(String[] args) {
-        launch();
-    }
 }
